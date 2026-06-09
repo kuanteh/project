@@ -208,7 +208,36 @@ $dbBrands = $brandStmt->fetchAll();
                     <p class="product-empty-hint">Add items in manage-product-add.php to see them here.</p>
                 </div> -->
             <?php endif; ?>
+        </div>
+    </section>
 
+    <!-- ---- Brand Marquee Section ------ -->
+    <section>
+        <div class="brand-marquee-section">
+            <div class="brand-marquee-container">
+                <div class="brand-marquee-content">
+
+                    <span class="brand-logo-box"><img src="./image/logoImage/tntco(1).PNG" alt="tntco"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/stone(1).PNG" alt="stone"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/keynote(1).PNG" alt="keynote"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/against_lab(1).PNG" alt="against_lab"></span>
+
+                    <span class="brand-logo-box"><img src="./image/logoImage/tntco(1).PNG" alt="tntco"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/stone(1).PNG" alt="stone"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/keynote(1).PNG" alt="keynote"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/against_lab(1).PNG" alt="against_lab"></span>
+
+                    <span class="brand-logo-box"><img src="./image/logoImage/tntco(1).PNG" alt="tntco"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/stone(1).PNG" alt="stone"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/keynote(1).PNG" alt="keynote"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/against_lab(1).PNG" alt="against_lab"></span>
+
+                    <span class="brand-logo-box"><img src="./image/logoImage/tntco(1).PNG" alt="tntco"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/stone(1).PNG" alt="stone"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/keynote(1).PNG" alt="keynote"></span>
+                    <span class="brand-logo-box"><img src="./image/logoImage/against_lab(1).PNG" alt="against_lab"></span>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -251,7 +280,7 @@ $dbBrands = $brandStmt->fetchAll();
                     navContainer.classList.remove("nav-hidden");
                 }
 
-                // ⚠️ 极其关键的一步：更新上一次的滚动位置，留给下一次滚动时对比
+                // 更新上一次的滚动位置
                 lastScrollY = currentScrollY;
             }
 

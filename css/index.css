@@ -48,15 +48,10 @@ body {
 }
 
 .marquee-content span {
-    /* font-family: sans-serif; */
     font-weight: bold;
-    /* font-style: italic; */
     font-size: 14px;
-    /* color: #333; */
     color: white;
-    /* 暗灰色文字 */
     padding-right: 50px;
-    /* 间距 */
 }
 
 /* Scroll Left Animation */
@@ -72,50 +67,41 @@ body {
 
 /* Nav Bar */
 
-/* 1. 让包含所有元素的容器开启相对定位，作为中央定位的基准 */
 .navbar > .container {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /*  确保左侧的汉堡菜单和菜单项默认靠左 */
+    justify-content: flex-start; /*  toggle 靠左 */
 }
 
-/* 2. 核心：把 Brand（SHARQO）强行锁在导航栏的正中间 */
 .navbar .navbar-brand {
     position: absolute;
     left: 50%;
     transform: translateX(-50%); /*  往左回推自身宽度的一半，实现真正的几何正中心对齐 */
     margin-right: 0 !important; /* 移除 Bootstrap 默认的右边距 */
-    z-index: 10; /* 提高层级，防止被两边的内容挡住 */
 }
 
-/* 3. 让菜单项（Nav Items）彻底靠左对齐 */
+/* menu（Nav Items）彻底靠左对齐 */
 .navbar-collapse {
-    flex-grow: 0; /* 阻止它强行撑满 */
+    flex-grow: 0; /* avoid撑满 */
 }
 
 .navbar-nav {
     display: flex;
     flex-direction: row;
-    gap: 15px; /* 👈 可以adjust左边每个link的间距 */
+    gap: 15px; 
 }
 
-/* 移动端适配（响应式处理）：当手机屏幕变小时，防止左侧菜单展开后和中间的 Brand 重叠 */
 @media (max-width: 991.98px) {
     .navbar .navbar-brand {
-        /* 在手机端，如果你希望它回居左展示，可以取消绝对定位：
-        position: static;
-        transform: none; */
-
-        /* 或者保持在中间，但让展开的菜单往下掉，不遮挡中间 */
         z-index: 1;
     }
     .navbar-collapse {
         width: 100%;
-        margin-top: 15px; /* 手机端下拉菜单向下挪一点 */
+        margin-top: 15px; 
     }
     .navbar-nav {
-        flex-direction: column; /* 手机端菜单项变成垂直排列 */
+        flex-direction: column;
         gap: 10px;
     }
 }
@@ -133,7 +119,7 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 #navbar:has(.navbar-scrolled) {
-    /* 💡 只要用户开始往下滚了（跑马灯划走了），导航栏就立刻回到最顶端 (top: 0) */
+    /* 💡 只要user scroll down（marquee划走了），nav bar 就stick 在 top (top: 0) */
     top: 0;
 }
 
@@ -151,8 +137,8 @@ body {
     transition: color 0.4 ease;
 }
 
-/* 向下滚动时：半透明，可隐约看到下方内容 */
-.navbar.navbar-scrolled{
+/* scroll down transparent */
+.navbar.navbar-scrolled {
     background-color: rgba(255, 255, 255, 0.75) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
@@ -160,7 +146,7 @@ body {
 
 .navbar.navbar-scrolled .navbar-brand,
 .navbar.navbar-scrolled .nav-link,
-.navbar.navbar-scrolled .profile-link  {
+.navbar.navbar-scrolled .profile-link {
     color: black !important;
 }
 
@@ -169,19 +155,21 @@ body {
     transform: translateY(-100%);
 }
 
-/* nav bar 左边的人头 */
+/* nav bar 右边的人头 */
 .navbar .navbar-profile-zone {
     position: absolute;
-    right: 15px;      /* 👈 距离导航栏右边缘 15 像素 */
+    right: 15px; /* 👈 距离导航栏右边缘 15 像素 */
     top: 50%;
     transform: translateY(-50%); /* 上下完美垂直居中 */
 }
 
 .navbar .profile-link {
-    font-size: 24px;  
-    color: #ffffff ; 
+    font-size: 24px;
+    color: #ffffff;
     text-decoration: none;
-    transition: color 0.4s ease, transform 0.2s ease;
+    transition:
+        color 0.4s ease,
+        transform 0.2s ease;
     display: inline-block;
 }
 
@@ -190,21 +178,11 @@ body {
 } */
 
 /* Hero Section*/
-/* ─── Hero Section ─────────────────────────────────────────
-   [RESPONSIVE FIX]
-   原本 height: 650px 是固定高度，手机上字体 12rem 比容器还高会被裁掉。
-   改成 min-height: 650px → 容器可以随内容撑开，不会裁切文字。
-   加 padding-top: 80px 是因为 navbar fixed-top 高度约 60px，
-   防止内容被 navbar 遮住。
-   加 padding-left/right 防止文字贴到手机屏幕边缘。
-   ─────────────────────────────────────────────────────── */
 .hero-content {
-    background-image: url(../image/productImage/SaveClip.App_687522542_18529228981074237_1246426372260585549_n.jpg);
     background-size: cover;
     background-position: center 15%;
-    /* background-color:white; */
     /* 给bg image 变dark 一点, 字体才可以看清楚 */
-    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../image/productImage/SaveClip.App_687522542_18529228981074237_1246426372260585549_n.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../image/modelImage/SaveClip.App_687522542_18529228981074237_1246426372260585549_n.jpg);
     min-height: 650px; /* 让container以撑开 */
     display: flex;
     flex-direction: column;
@@ -214,9 +192,9 @@ body {
 }
 
 .hero-content h1 {
-    font-size: clamp(3.5rem, 10vw, 5rem); /*clamp 属性可以自动调整字体大小 ，*/
+    font-size: clamp(3.5rem, 10vw, 5rem);
     line-height: 1;
-    word-break: break-word; /* 可以切断文字因为Portfolio 很长 */
+    word-break: break-word; /* Cut 字 */
     /* color: white; */
 
     /* 文字风格1 */
@@ -255,15 +233,15 @@ body {
     filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.85));
 }
 
-.btn-hero{
-    background-color: white; 
-    color: black; 
+.btn-hero {
+    background-color: white;
+    color: black;
     border: 1px black solid;
-    border-radius: 10px; 
+    border-radius: 10px;
     padding: 0.6rem 1.75rem;
 }
 
-.btn-hero:hover{
+.btn-hero:hover {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px white solid;
     color: white;
@@ -280,27 +258,6 @@ body {
     justify-content: center;
     color: white;
     padding: 80px 1.5rem 40px; /* 上留空给 navbar，左右防贴边 */
-}
-
-.productShow-content h1 {
-    font-size: clamp(3.5rem, 13vw, 11rem); /*clamp 属性可以自动调整字体大小 ，*/
-    line-height: 1;
-    word-break: break-word; /* 可以切断文字因为Portfolio 很长 */
-}
-/* ─── Home Section ─── */
-
-.home-section {
-    background-color: #ffffff;
-    color: #111111;
-}
-
-.home-section--gray {
-    background-color: #f7f7f7;
-}
-
-.home-section--dark {
-    background-color: #0a0a0a;
-    color: #ffffff;
 }
 
 .section-container {
@@ -330,8 +287,12 @@ body {
     margin: 0;
 }
 
-.section-link {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+/* .section-link {
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -341,8 +302,10 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.35rem;
-    transition: gap 0.25s ease, opacity 0.25s ease;
-}
+    transition:
+        gap 0.25s ease,
+        opacity 0.25s ease;
+} */
 
 .section-link:hover {
     gap: 0.6rem;
@@ -375,7 +338,11 @@ body {
 .product-card-brand {
     display: inline-block;
     width: fit-content;
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -385,7 +352,9 @@ body {
     padding-bottom: 5px;
     /* 给brand label 加一个 border-bottom */
     border-bottom: 1px solid #e0e0e0;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    transition:
+        color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 /* mouse 经过product card 的时候（hover）， 但是只是product-card-brand 被hover */
@@ -435,7 +404,11 @@ body {
 
 /* View Product fake button */
 .product-card-cta {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
     font-size: 14px;
     font-weight: 700;
     letter-spacing: 1px;
@@ -445,7 +418,9 @@ body {
     /* padding: 上下 , 左右 */
     padding: 10px 20px;
     transform: translateY(12px);
-    transition: transform 0.35s ease, background-color 0.3s ease;
+    transition:
+        transform 0.35s ease,
+        background-color 0.3s ease;
 }
 
 /*  Transform 跟 transition 的区别:
@@ -483,7 +458,11 @@ body {
 } */
 
 .product-card-name {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
     font-size: 0.78rem;
     font-weight: 500;
     /* line-height: 1.45; */
@@ -496,7 +475,11 @@ body {
 }
 
 .product-card-price {
-    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        sans-serif;
     font-size: 0.78rem;
     font-weight: 600;
     color: black;
@@ -519,3 +502,54 @@ body {
     font-size: 0.85rem;
     color: #999999;
 } */
+
+/* ------  Brand Marquee Section   -------- */
+.brand-marquee-section {
+    background-color: white;
+    height: 100px;
+    padding: 60px 0;
+    width: 100%;
+}
+
+/* animation slider marquee */
+.brand-marquee-container {
+    overflow: hidden;
+    width: 100%;
+    /* height: 40px;
+    padding: 0; */
+    display: flex;
+    align-items: center;
+}
+
+.brand-marquee-content {
+    display: flex;
+    /* 不要wrap ，不会换行 */
+    flex-direction: row;
+    white-space: nowrap;
+    align-items: center;
+    /* 这里的 20s 是滚动速度（完成一次动画循环要20秒） */
+    animation: brand-scroll-left 15s linear infinite;
+}
+
+.brand-marquee-content .brand-logo-box {
+    display: inline-flex;   
+    align-items: center;
+    justify-content: center;    
+    height: 70px;           
+    padding: 0 45px;       
+}
+
+.brand-marquee-content .brand-logo-box img {
+    height: 100%;
+    width: auto;
+}
+
+@keyframes brand-scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
