@@ -1,0 +1,70 @@
+/* Hero Section*/
+.hero-content {
+    background-size: cover;
+    background-position: center 15%;
+    /* 给bg image 变dark 一点, 字体才可以看清楚 */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../../image/modelImage/SaveClip.App_687522542_18529228981074237_1246426372260585549_n.jpg);
+    min-height: 650px; /* 让container以撑开 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* color: black; */
+    padding: 80px 1.5rem 40px; /* 上留空给 navbar，左右防贴边 */
+    z-index: 0;
+}
+
+.hero-content h1 {
+    font-size: clamp(3.5rem, 10vw, 5rem);
+    line-height: 1;
+    word-break: break-word; /* Cut 字 */
+    /* color: white; */
+
+    /* 文字风格1 */
+    /* font-family: 'Permanent Marker', sans-serif; 👈 换成你喜欢的个性字体 */
+    /* font-size: 80px;      大气的大标题尺寸 */
+    /* font-weight: bold; */
+    /* color: #ffffff;       文字主色调为纯白 */
+    /* letter-spacing: 2px;  字间距稍微拉开，增加呼吸感 */
+
+    /* 💡 4层不同模糊度的黑色阴影叠加，形成极其自然的深邃感，完美隔绝复杂背景 */
+    /* text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.6), 
+        -2px -2px 4px rgba(0, 0, 0, 0.4),
+        0px 0px 20px rgba(0, 0, 0, 0.8),
+        0px 0px 40px rgba(0, 0, 0, 0.9); */
+
+    /* 文字风格2 */
+    /* 给text 变成透明 */
+    /* color: transparent;  */
+
+    /* 给文字加上纯白描边 */
+    /* -webkit-text-stroke: 2px #ffffff;  */
+
+    /*加上一层微弱的黑色发光，确保背景有 */
+    /* text-shadow: 0px 0px 15px rgba(0, 0, 0, 0.9);  */
+
+    /* 文字风格 3 */
+    font-size: 80px;
+
+    /* 让文字呈现从白到浅灰的金属渐变色 */
+    background: linear-gradient(135deg, #ffffff 0%, #bbbbbb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    /* 💡 硬边缘投影，制造复古错位印刷感 */
+    filter: drop-shadow(4px 4px 0px rgba(0, 0, 0, 0.85));
+}
+
+.btn-hero {
+    background-color: white;
+    color: black;
+    border: 1px black solid;
+    border-radius: 10px;
+    padding: 0.6rem 1.75rem;
+}
+
+.btn-hero:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px white solid;
+    color: white;
+}

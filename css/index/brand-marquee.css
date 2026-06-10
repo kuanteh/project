@@ -1,0 +1,49 @@
+/* ------  Brand Marquee Section   -------- */
+.brand-marquee-section {
+    background-color: white;
+    height: 100px;
+    padding: 60px 0;
+    width: 100%;
+}
+
+/* animation slider marquee */
+.brand-marquee-container {
+    overflow: hidden;
+    width: 100%;
+    /* height: 40px;
+    padding: 0; */
+    display: flex;
+    align-items: center;
+}
+
+.brand-marquee-content {
+    display: flex;
+    /* 不要wrap ，不会换行 */
+    flex-direction: row;
+    white-space: nowrap;
+    align-items: center;
+    /* 这里的 20s 是滚动速度（完成一次动画循环要20秒） */
+    animation: brand-scroll-left 15s linear infinite;
+}
+
+.brand-marquee-content .brand-logo-box {
+    display: inline-flex;   
+    align-items: center;
+    justify-content: center;    
+    height: 70px;           
+    padding: 0 45px;       
+}
+
+.brand-marquee-content .brand-logo-box img {
+    height: 100%;
+    width: auto;
+}
+
+@keyframes brand-scroll-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}

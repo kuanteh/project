@@ -13,6 +13,15 @@ $productStmt = $db->prepare($productQuery);
 $productStmt->execute();
 $products = $productStmt->fetchAll();
 
+// 拿 database 的  product table 的第1 到第4 的 product (TNT CO)
+$productbrandQuery = "SELECT product_id, product_name, brand, price, category, image
+                 FROM products
+                 ORDER BY product_id ASC
+                 LIMIT 4";
+$productbrandStmt = $db->prepare($productbrandQuery);
+$productbrandStmt->execute();
+$productbrand = $productbrandStmt->fetchAll();
+
 /**
  * 从数据库统计每个潮牌有多少件商品
  * 用在 Featured Brands section（参考 Double 7 首页）
@@ -36,11 +45,15 @@ $dbBrands = $brandStmt->fetchAll();
     <!-- import CSS -->
     <link rel="stylesheet" href="./css/index.css" />
     <link rel="stylesheet" href="./css/googleFonts.css" />
+    <link rel="stylesheet" href="./css/index/heroSection.css" />
+    <link rel="stylesheet" href="./css/index/navbar.css" />
+    <link rel="stylesheet" href="./css/index/marquee.css" />
+    <link rel="stylesheet" href="./css/index/brand-marquee.css" />
     <!-- import Bootstrap -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
     <!-- import Bootstrap icon -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <!-- import Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -240,6 +253,132 @@ $dbBrands = $brandStmt->fetchAll();
             </div>
         </div>
     </section>
+    <section>
+        <div class="modelSection">
+            <div class="modelSection-content">
+                <div class="css-slider-track">
+                    <div class="model-card">
+                        <img src="image\modelImage\SaveClip.App_683525735_18526613563074237_3789934935279106939_n.jpg" alt="1">
+                        <div class="model-overlay"></div>
+                    </div>
+                    <div class="model-card">
+                        <img src="image\modelImage\SaveClip.App_669884781_18523854178074237_7575431653553459693_n.jpg" alt="2">
+                        <div class="model-overlay"></div>
+                    </div>
+                    <div class="model-card">
+                        <img src="image\modelImage\SaveClip.App_670320921_18522993844074237_922027755978649280_n.jpg" alt="3">
+                        <div class="model-overlay"></div>
+                    </div>
+                    <div class="model-card">
+                        <img src="image\modelImage\SaveClip.App_684110542_18526613551074237_9044089491233835511_n.jpg" alt="4">
+                        <div class="model-overlay"></div>
+                    </div>
+                    <div class="model-card">
+                        <img src="image\modelImage\SaveClip.App_683162049_18527043748074237_7984394788923701880_n.jpg" alt="5">
+                        <div class="model-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  -------- Section Product Show by Brand -------  -->
+    <section id="productShow-section" class="home-section">
+        <div class="section-container">
+
+            <div class="section-heading">
+                <h2 class="section-title">Brand : TNTCO</h2>
+            </div>
+
+            <!-- $products 是一个 array , 如果$products 这个盒子装的商品数量 more than 0 就 run 下面的code -->
+            <?php if (count($productbrand) > 0): ?>
+
+                <!-- product-grid-row：CSS 强制 4 列，只显示一排 -->
+                <div class="product-grid-row">
+                    <!-- foreach - 逐个循环(把 $productbrand array的内容一个一个拿出来)
+                        $productbrand as $product - $productbrand 是一个 array 里面装着select 出来的商品, $product 是 临时variable
+                    -->
+                    <?php foreach ($productbrand as $product): ?>
+                        <!-- 每一个商品是一个a tag，点击了就会跳转到product.php 这个页面，同时把product_id 传过去 -->
+                        <!-- ./product.php?id= 是他可以跳转网页的同时把id 送过去 , 等于的后面是要拿哪一个 id -->
+                        <!-- $product['product_id'] 是从 database 拉出来的当前的商品的 product id -->
+                        <a
+                            href="./product.php?id=<?php echo (int) $product['product_id']; ?>"
+                            class="product-card">
+                            <!-- 潮牌brand label -->
+                            <span class="product-card-brand">
+                                <?php echo htmlspecialchars($product['brand']); ?>
+                            </span>
+
+                            <!-- product图片 -->
+                            <div class="product-card-image">
+                                <img
+                                    src="<?php echo htmlspecialchars($product['image']); ?>"
+                                    alt="<?php echo htmlspecialchars($product['product_name']); ?>"
+                                    loading="lazy">
+                                <!-- Hover 时出现的黑色filter 和 fake button (View Product) -->
+                                <div class="product-card-overlay">
+                                    <span class="product-card-cta">View Product</span>
+                                </div>
+                            </div>
+
+                            <div class="product-card-info">
+                                <p class="product-card-name">
+                                    <?php echo htmlspecialchars($product['product_name']); ?>
+                                </p>
+                                <p class="product-card-price">
+                                    RM <?php echo number_format((float) $product['price'], 2); ?>
+                                </p>
+                            </div>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+                <!-- 如果没有product 出什么: -->
+                <!-- <?php else: ?> 
+                <div class="product-empty">
+                    <p>No products yet.</p>
+                    <p class="product-empty-hint">Add items in manage-product-add.php to see them here.</p>
+                </div> -->
+            <?php endif; ?>
+        </div>
+    </section>
+
+    <!-- Ads Video -->
+    <section>
+        <div class="adsVideo-content">
+            <div class="ads">
+                <video autoplay muted loop playsinline class="ads-video">
+                    <source src="image/tntcoAds.mp4" type="video/mp4" />
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Shop Now  -->
+    <section>
+        <div class="section-container">
+            <div class="about-strip">
+                <div class="about-strip-text">
+                    <p class="about-strip-label">Who is SHARQO?</p>
+                    <h2 class="about-strip-title">Local Streetwear,<br>Global Attitude</h2>
+                    <p class="about-strip-desc">
+                        Curated Malaysian streetwear — quality fits, limited drops,
+                        and styles that hit different.
+                    </p>
+                    <a href="./about.php" class="about-strip-btn">
+                        Explore now <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+                <div class="about-strip-image">
+                    <img
+                        src="./image/modelImage/SaveClip.App_681472343_18527043760074237_904798852879750857_n.jpg"
+                        alt="SHARQO lifestyle"
+                        loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
 
     <!-- scroll 下去会有 navbar 会 transparent -->
     <script>
@@ -288,6 +427,13 @@ $dbBrands = $brandStmt->fetchAll();
             window.addEventListener("scroll", handleScroll);
         })();
     </script>
+
+    <?php
+    include("./dry/footer.php");
+    ?>
+
+    <!-- import Swiper js
+    <link rel="stylesheet" href="https://jsdelivr.net" /> -->
 
 </body>
 
