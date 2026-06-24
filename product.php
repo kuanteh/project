@@ -1,9 +1,10 @@
 <?php
 // session_start()
+
 /**
  * product.php — 商品详情页
  */
-$db = new PDO("mysql:host=localhost;dbname=b18_sharqo", "root", "");
+// $db = new PDO("mysql:host=localhost;dbname=b18_sharqo", "root", "");
 
 require_once __DIR__ . '/dry/init.php';
 
@@ -25,6 +26,7 @@ if (!$product) {
     exit;
 }
 
+// function.php 里面的 function
 $sizes = getProductSizes($db, $productId);
 $totalStock = getProductTotalStock($db, $productId);
 
@@ -35,34 +37,36 @@ $relatedStmt->execute([':cat' => $product['category'], ':id' => $productId]);
 $related = $relatedStmt->fetchAll();
 
 $pageTitle = $product['product_name'];
-// require __DIR__ . '/includes/header.php';
+require __DIR__ . '/dry/header.php';
 ?>
 
 <div class="product-detail">
     <!-- 左栏：商品信息 -->
     <div>
         <a href="./catalog.php" class="product-detail-back"><i class="bi bi-arrow-left"></i> Back</a>
-        <p class="small text-uppercase text-muted mb-2"><?php echo e($product['brand']); ?></p>
-        <h1 class="product-detail-title"><?php echo e($product['product_name']); ?></h1>
+        <p class="text-uppercase text-muted mb-2"><?php echo ($product['brand']); ?></p>
+        <h1 class="product-detail-title"><?php echo ($product['product_name']); ?></h1>
         <div class="product-detail-meta">
-            <p><strong>Category:</strong> <?php echo e($product['category']); ?></p>
-            <p><strong>Brand:</strong> <?php echo e($product['brand']); ?></p>
+            <p><strong>Category:</strong> <?php echo ($product['category']); ?></p>
+            <p><strong>Brand:</strong> <?php echo ($product['brand']); ?></p>
             <p><strong>Total Stock:</strong> <?php echo $totalStock; ?> pcs</p>
         </div>
 
+        <!-- 如果 database 里面的product table 的 description column 不是空的（有文字），就run 下面的code -->
+        <!-- nl2br = newlineto<br> 把一个 row的， 可以换行 -->
         <?php if (!empty($product['description'])): ?>
-            <div class="mt-3 small text-muted">
-                <?php echo nl2br(e($product['description'])); ?>
+            <div class="mt-3 fs-6 text-muted">
+                <?php echo nl2br($product['description']); ?>
             </div>
         <?php endif; ?>
     </div>
 
-    <!-- 中栏：商品图片 -->
+    <!-- prodduct image -->
     <div class="product-detail-image">
-        <img src="<?php echo e($product['image']); ?>" alt="<?php echo e($product['product_name']); ?>">
+        <img src="<?php echo ($product['image']); ?>" alt="<?php echo e($product['product_name']); ?>">
     </div>
 
-    <!-- 右栏：购买操作 -->
+    <!-- 右边 - check out  -->
     <div>
         <p class="product-detail-price"><?php echo formatPrice($product['price']); ?></p>
 
@@ -84,19 +88,30 @@ $pageTitle = $product['product_name'];
 
             <p class="stock-info" id="stockInfo">Select a size to see stock.</p>
 
+            <!-- Quantity Input -->
             <label class="form-label size-label">Quantity</label>
             <input type="number" name="quantity" id="qtyInput" class="form-control qty-input" value="1" min="1" max="1">
 
+            <!-- Check Out Button -->
             <button type="submit" class="btn-checkout" id="checkoutBtn" disabled>
                 <i class="bi bi-bag"></i> Check Out
             </button>
         </form>
 
+        <!-- Section Description -->
         <div class="accordion-section">
             <details>
                 <summary>Details</summary>
                 <div class="detail-content">
-                    <?php echo !empty($product['description']) ? nl2br(e($product['description'])) : 'No description available.'; ?>
+                    <!-- 
+                    !empty($product['description']) 
+                     检查 product table 的 descriptio column 是不是 empty
+                    ? nl2br($product['description'])
+                    问号后面是 如果条件是true ，就run nl2br....
+                    : 'No description available.'
+                    : 后面是 如果 syarat 是 false 就 echo No description available.
+                     -->
+                    <?php echo !empty($product['description']) ? nl2br($product['description']) : 'No description available.'; ?>
                 </div>
             </details>
             <details>
@@ -109,7 +124,7 @@ $pageTitle = $product['product_name'];
             <details>
                 <summary>Washing Instructions</summary>
                 <div class="detail-content">
-                    <?php echo !empty($product['washing_instruction']) ? nl2br(e($product['washing_instruction'])) : 'Machine wash cold. Do not bleach. Tumble dry low.'; ?>
+                    <?php echo !empty($product['washing_instruction']) ? nl2br($product['washing_instruction']) : 'Machine wash cold. Do not bleach. Tumble dry low.'; ?>
                 </div>
             </details>
             <details>
@@ -156,15 +171,16 @@ $pageTitle = $product['product_name'];
     </div>
 </div>
 
+<!-- you might also like Section -->
 <?php if (count($related) > 0): ?>
     <section class="related-section">
         <h2 class="mb-3" style="font-family:Bungee,sans-serif; font-size:1rem; letter-spacing:.1em;">YOU MIGHT ALSO LIKE</h2>
         <div class="related-grid">
             <?php foreach ($related as $r): ?>
                 <a href="./product.php?id=<?php echo (int) $r['product_id']; ?>" class="related-card">
-                    <img src="<?php echo e($r['image']); ?>" alt="<?php echo e($r['product_name']); ?>" loading="lazy">
-                    <p class="small mb-0"><?php echo e($r['product_name']); ?></p>
-                    <p class="small text-muted"><?php echo formatPrice($r['price']); ?></p>
+                    <img src="<?php echo ($r['image']); ?>" alt="<?php echo ($r['product_name']); ?>" loading="lazy">
+                    <p class="fs-6 mb-0"><?php echo ($r['product_name']); ?></p>
+                    <p class="fs-6 text-muted"><?php echo formatPrice($r['price']); ?></p>
                 </a>
             <?php endforeach; ?>
         </div>
@@ -196,4 +212,4 @@ $pageTitle = $product['product_name'];
     })();
 </script>
 
-<?php require __DIR__ . '/includes/footer.php'; ?>
+<?php require __DIR__ . '/dry/footer.php'; ?>

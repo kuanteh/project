@@ -1,5 +1,6 @@
 <?php
-$db = new PDO("mysql:host=localhost;dbname=b18_sharqo", "root", "");
+// $db = new PDO("mysql:host=localhost;dbname=b18_sharqo", "root", "");
+require_once __DIR__ . '/dry/init.php';
 
 /**
  * 只读取最新 4 件商品 → 首页 product section 固定一排 4 个
@@ -100,36 +101,38 @@ $dbBrands = $brandStmt->fetchAll();
                             <!-- Option -->
                             <!-- dropdowm-menu 会先display none 以下的option,click 了才有反应 -->
                             <ul class="dropdown-menu border-dark">
-                                <li><a class="dropdown-item" href="#all">All</a></li>
-                                <li><a class="dropdown-item" href="#">Top</a></li>
-                                <li><a class="dropdown-item" href="#bottom">Bottom</a></li>
-                                <li><a class="dropdown-item" href="#accesories">Accesories</a></li>
+                                <li><a class="dropdown-item" href="catalog.php">All</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?category=top">Top</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?category=bottom">Bottom</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?category=accessories">Accesories</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link" href="#new">New</a>
-                        </li>
+                        </li> -->
                         <li class="nav-item dropdown">
                             <!-- 加上 data-bs-toggle="dropdown" ，点击他就就会show option -->
                             <!-- role:button 是给原本 <a> tag 不在是 link的功能 是button  -->
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                                SHQR Coleection
+                                Brand
                             </a>
                             <!-- Option -->
                             <!-- dropdowm-menu 会先display none 以下的option,click 了才有反应 -->
                             <ul class="dropdown-menu border-dark">
-                                <li><a class="dropdown-item" href="#keynote">Keynote</a></li>
-                                <li><a class="dropdown-item" href="#tntco">TNTCO</a></li>
-                                <li><a class="dropdown-item" href="#againtsLab">Againts Lab</a></li>
-                                <li><a class="dropdown-item" href="#StoneCo">Stone & Co</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?brand=keynote">Keynote</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?brand=tntco">TNTCO</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?brand=AgainstLab">Againts Lab</a></li>
+                                <li><a class="dropdown-item" href="catalog.php?brand=stoneCo">Stone & Co</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#about">About</a>
+                            <a class="nav-link" href="about.php">About</a>
                         </li>
                     </ul>
                     <div class="navbar-profile-zone">
-                        <?php
+                        <?php $profile_url = isLoggedIn() ? './profile.php' : './login-form.php'; ?>
+
+                        <!-- 
                         // 在服务器端用 $_SESSION['user'] 来记录用户登录状态
                         // 如果你想在写前端时先测试效果，可以手动把下面这行改成 if (true) 或 if (false)
                         if (isset($_SESSION['user']) && !empty($_SESSION['user'])) {
@@ -139,10 +142,10 @@ $dbBrands = $brandStmt->fetchAll();
                             // 情况 B：没有账户/未登录，前往登录页面
                             $profile_url = "./login-form.php";
                         }
-                        ?>
+                        ?> -->
 
+                        <!-- $profile_url 可以是  ./profile 或者是 ./login-form.php -->
                         <a href="<?php echo $profile_url; ?>" class="profile-link" title="My Account">
-                            <!-- bi-person-circle 是 Bootstrap 官方的高级圆圈人头图标 -->
                             <i class="bi bi-person-circle"></i>
                         </a>
                     </div>
@@ -155,7 +158,7 @@ $dbBrands = $brandStmt->fetchAll();
         <div id="hero-section">
             <div class="hero-content">
                 <h1 class="text-center bungee-regular">SHARQO OUTFIT</h1>
-                <a href="https://www.facebook.com/ChongChengKulimKedah" class="edu-inbtn text-decoration-none text-center">
+                <a href="#productShow-section" class="edu-inbtn text-decoration-none text-center">
                     <button class="btn-hero">Shop Now</button>
                 </a> <!-- <p class="text-center fs-3 racing-sans-one-regular">by Chan Ze Yu</p>
                 <p class="text-center fs-6 fst-italic tex6t-secondary">Student in Forward College / Coding Beginner / Tech Explorer</p> -->
@@ -188,14 +191,14 @@ $dbBrands = $brandStmt->fetchAll();
                             class="product-card">
                             <!-- 潮牌brand label -->
                             <span class="product-card-brand">
-                                <?php echo htmlspecialchars($product['brand']); ?>
+                                <?php echo ($product['brand']); ?>
                             </span>
 
                             <!-- product图片 -->
                             <div class="product-card-image">
                                 <img
-                                    src="<?php echo htmlspecialchars($product['image']); ?>"
-                                    alt="<?php echo htmlspecialchars($product['product_name']); ?>"
+                                    src="<?php echo ($product['image']); ?>"
+                                    alt="<?php echo ($product['product_name']); ?>"
                                     loading="lazy">
                                 <!-- Hover 时出现的黑色filter 和 fake button (View Product) -->
                                 <div class="product-card-overlay">
@@ -205,7 +208,7 @@ $dbBrands = $brandStmt->fetchAll();
 
                             <div class="product-card-info">
                                 <p class="product-card-name">
-                                    <?php echo htmlspecialchars($product['product_name']); ?>
+                                    <?php echo ($product['product_name']); ?>
                                 </p>
                                 <p class="product-card-price">
                                     RM <?php echo number_format((float) $product['price'], 2); ?>
@@ -307,14 +310,14 @@ $dbBrands = $brandStmt->fetchAll();
                             class="product-card">
                             <!-- 潮牌brand label -->
                             <span class="product-card-brand">
-                                <?php echo htmlspecialchars($product['brand']); ?>
+                                <?php echo ($product['brand']); ?>
                             </span>
 
                             <!-- product图片 -->
                             <div class="product-card-image">
                                 <img
-                                    src="<?php echo htmlspecialchars($product['image']); ?>"
-                                    alt="<?php echo htmlspecialchars($product['product_name']); ?>"
+                                    src="<?php echo ($product['image']); ?>"
+                                    alt="<?php echo ($product['product_name']); ?>"
                                     loading="lazy">
                                 <!-- Hover 时出现的黑色filter 和 fake button (View Product) -->
                                 <div class="product-card-overlay">
@@ -324,7 +327,7 @@ $dbBrands = $brandStmt->fetchAll();
 
                             <div class="product-card-info">
                                 <p class="product-card-name">
-                                    <?php echo htmlspecialchars($product['product_name']); ?>
+                                    <?php echo ($product['product_name']); ?>
                                 </p>
                                 <p class="product-card-price">
                                     RM <?php echo number_format((float) $product['price'], 2); ?>
@@ -371,7 +374,7 @@ $dbBrands = $brandStmt->fetchAll();
                 </div>
                 <div class="about-strip-image">
                     <img
-                        src="./image/modelImage/SaveClip.App_681472343_18527043760074237_904798852879750857_n.jpg"
+                        src="./image/modelImage/modelImage.png"
                         alt="SHARQO lifestyle"
                         loading="lazy">
                 </div>
@@ -427,6 +430,9 @@ $dbBrands = $brandStmt->fetchAll();
             window.addEventListener("scroll", handleScroll);
         })();
     </script>
+
+    <!-- ?php $skipMainClose = true;
+    require __DIR__ . '/dry/footer.php'; ?> -->
 
     <?php
     include("./dry/footer.php");

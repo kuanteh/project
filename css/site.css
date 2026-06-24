@@ -1,0 +1,467 @@
+/* site.css — 全站内页通用样式（商品详情、结账、个人中心等） */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+body.page-light {
+    background: #ffffff;
+    color: #111111;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+body.page-dark {
+    background: #050507;
+    color: #ffffff;
+}
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #eeeeee;
+}
+
+.site-navbar .navbar-brand {
+    font-size: 1.25rem;
+    letter-spacing: 0.08em;
+}
+
+.site-navbar .nav-link {
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #111111 !important;
+}
+
+.site-icon-link {
+    font-size: 1.4rem;
+    color: #111111;
+    text-decoration: none;
+}
+
+.site-main {
+    min-height: calc(100vh - 220px);
+}
+
+/* Auth pages */
+.auth-wrap {
+    max-width: 460px;
+    margin: 4rem auto;
+    padding: 0 1.25rem;
+}
+
+.auth-card {
+    border: 1px solid #e8e8e8;
+    padding: 2rem;
+    background: #fff;
+}
+
+.auth-title {
+    font-family: "Bungee", sans-serif;
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.06em;
+}
+
+/* Product detail — 三栏布局 */
+.product-detail {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1fr;
+    gap: 2rem;
+    align-items: start;
+}
+
+.product-detail-back {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #666;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 1.5rem;
+}
+
+.product-detail-title {
+    font-family: "Bungee", sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.product-detail-meta {
+    font-size: 0.8rem;
+    color: #666;
+    line-height: 1.8;
+}
+
+.product-detail-image {
+    background: #f4f4f4;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+}
+
+.product-detail-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-detail-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+}
+
+.size-label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.size-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.size-btn {
+    /* width: 48px; */
+    height: 48px;
+    border: 1px solid #111;
+    background: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.size-btn:hover:not(:disabled) {
+    background: #111;
+    color: #fff;
+}
+
+.size-btn.active {
+    background: #111;
+    color: #fff;
+}
+
+.size-btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    text-decoration: line-through;
+}
+
+.stock-info {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 1rem;
+}
+
+.qty-input {
+    width: 80px;
+    margin-bottom: 1.25rem;
+}
+
+.btn-checkout {
+    width: 100%;
+    background: #111;
+    color: #fff;
+    border: none;
+    padding: 0.9rem 1.5rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: background 0.25s ease;
+}
+
+.btn-checkout:hover {
+    background: rgb(112, 5, 5);
+    color: #fff;
+}
+
+.accordion-section {
+    border-top: 1px solid #e0e0e0;
+    margin-top: 1.5rem;
+}
+
+.accordion-section details {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 0.85rem 0;
+}
+
+.accordion-section summary {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.accordion-section .detail-content {
+    font-size: 0.85rem;
+    color: #555;
+    line-height: 1.7;
+    padding-top: 0.75rem;
+}
+
+/* You might also like */
+.related-section {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.related-card {
+    text-decoration: none;
+    color: #111;
+}
+
+.related-card img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    background: #f4f4f4;
+    margin-bottom: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.related-card:hover img {
+    transform: scale(1.03);
+}
+
+/* Catalog */
+.catalog-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+.catalog-card {
+    text-decoration: none;
+    color: #111;
+}
+
+.catalog-card-brand {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 0.5rem;
+}
+
+.catalog-card-image {
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #f4f4f4;
+    margin-bottom: 0.75rem;
+}
+
+.catalog-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.catalog-card:hover .catalog-card-image img {
+    transform: scale(1.05);
+}
+
+/* Checkout */
+.checkout-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.checkout-summary {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #e8e8e8;
+    margin-bottom: 1.5rem;
+}
+
+.checkout-summary img {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+}
+
+.checkout-total-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+.checkout-total-row.grand {
+    font-weight: 700;
+    font-size: 1.1rem;
+    border-top: 1px solid #111;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+}
+
+/* Profile */
+.profile-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+}
+
+.profile-card {
+    border: 1px solid #e8e8e8;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.order-table {
+    width: 100%;
+    font-size: 0.85rem;
+}
+
+.order-table th,
+.order-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid #111;
+}
+
+.status-Pending { background: #fff3cd; }
+.status-Processing { background: #cff4fc; }
+.status-Shipped { background: #d1e7dd; }
+.status-Completed { background: #e8e8e8; }
+
+/* Static content pages */
+.content-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+}
+
+.content-page h1 {
+    font-family: "Bungee", sans-serif;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.content-page p,
+.content-page li {
+    line-height: 1.8;
+    color: #444;
+}
+
+/* Footer */
+.site-footer {
+    background: #0a0a0a;
+    color: #ffffff;
+    padding: 3rem 0 1.5rem;
+    margin-top: 3rem;
+}
+
+.footer-brand {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+}
+
+.footer-text {
+    color: #aaaaaa;
+    font-size: 0.9rem;
+}
+
+.footer-heading {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links a {
+    color: #cccccc;
+    text-decoration: none;
+    font-size: 0.9rem;
+    line-height: 2;
+}
+
+.footer-links a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    border-top: 1px solid #333;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    text-align: center;
+    color: #888;
+    font-size: 0.8rem;
+}
+
+.alert-flash {
+    max-width: 900px;
+    margin: 1rem auto 0;
+    padding: 0 1.5rem;
+}
+
+@media (max-width: 991px) {
+    .product-detail {
+        grid-template-columns: 1fr;
+    }
+    .catalog-grid,
+    .related-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 575px) {
+    .catalog-grid,
+    .related-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+}

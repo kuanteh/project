@@ -1,7 +1,6 @@
 <?php
 
 /**
- * footer.php — 全站页脚
  * 首页 index.php 设 $skipMainClose = true（因为没用 header.php 的 <main>）
  */
 if (empty($skipMainClose)):
@@ -98,7 +97,7 @@ if (empty($skipMainClose)):
             <div class="col-md-4">
                 <h4 class="footer-heading">Customer Care</h4>
                 <ul class="footer-links">
-                    <li><a href="./shipping-policy.php">Delivery &amp; Shipping</a></li>
+                    <li><a href="./shipping-policy.php">Delivery & Shipping</a></li>
                     <li><a href="./privacyPolicy.php">Privacy Policy</a></li>
                     <li><a href="./terms-of-use.php">Terms of Use</a></li>
                     <li><a href="./contact.php">Contact</a></li>
@@ -109,7 +108,7 @@ if (empty($skipMainClose)):
                 <ul class="footer-links">
                     <li><a href="./about.php">About SHARQO</a></li>
                     <li><a href="./catalog.php">Shop All</a></li>
-                    <li><a href="https://www.facebook.com/ChongChengKulimKedah" target="_blank" rel="noopener">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/tntco_official?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a></li>
                 </ul>
             </div>
         </div>
